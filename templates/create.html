@@ -1,0 +1,27 @@
+<!-- Это значит, что данный шаблон является расширением base.html -->
+{% extends 'base.html' %}
+<!-- Тот самый блок, который будет вставлен в родительский шаблон -->
+{% block content %}
+<!-- Тот самый title, который будет вставлен в родительский шаблон, магия в том, что он одновременно является еще и h1 заголовком на странице -->
+<h1>{% block title %} Создание нового поста {% endblock %}</h1>
+<!-- Форма для сбора данных -->
+<form method="post">
+    <div class="form-group">
+        <label for="title">Заголовок</label>
+        <!-- Поле input предназначено для однострочного ввода данных, в данном случае заголовка -->
+        <input type="text" name="title"
+               placeholder="Заголовок поста" class="form-control"
+               value="{{ request.form['title'] }}"></input>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Содержание</label>
+         <!-- Поле textarea предназначено для ввода данных, но оно многострочное в отличие от input -->
+        <textarea name="content" placeholder="Содержание поста"
+                  class="form-control">{{ request.form['content'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Опубликовать</button>
+    </div>
+</form>
+{% endblock %}
